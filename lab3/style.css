@@ -1,0 +1,44 @@
+@import "reset.css";
+@import "bootstrap-reboot.css";
+
+body {
+    background-color: black;
+    color: white;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: right;
+    font-family: "Roboto";
+    background-image: url(pattern.png);
+}
+h1 {
+    text-align: right;
+    font-family: sans-serif;
+    color: #582C12;
+}
+em {
+    color: #FFD43A;
+}
+.wrapper {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url(Roboto/Roboto-VariableFont_wdth\,wght.ttf);
+}
+@font-face {
+    font-family: "Caveat";
+    src: url(Caveat/Caveat-VariableFont_wght.ttf);
+}
+strong {
+    font-family: "Caveat";
+}
+article {
+    border: 2px solid #582C12;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}

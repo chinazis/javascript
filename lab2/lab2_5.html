@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма регистрации</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 20px; }
+        .form-container { background-color: white; padding: 20px; width: 500px; border: 1px solid #ccc; border-radius: 5px; margin: 0 auto; }
+        h1 { font-size: 24px; margin-top: 0; }
+        table { width: 100%; border-collapse: collapse; }
+        td { padding: 8px; vertical-align: top; }
+        .label-cell { width: 120px; font-weight: bold; }
+        input[type="email"], input[type="password"], textarea, select { width: 100%; padding: 5px; border: 1px solid #ccc; box-sizing: border-box; }
+        textarea { height: 100px; resize: vertical; }
+        .checkbox-group label { display: block; margin-bottom: 4px; cursor: pointer; }
+        .buttons { margin-top: 15px; text-align: right; }
+        input[type="submit"], input[type="reset"] { padding: 8px 15px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Форма регистрации пользователя</h1>
+        <form action="#" method="post">
+            <table>
+                <tr>
+                    <td class="label-cell"><label for="email">E-mail</label></td>
+                    <td><input type="email" id="email" name="email" placeholder="Введите e-mail" required></td>
+                </tr>
+                <tr>
+                    <td class="label-cell"><label for="pass">Пароль</label></td>
+                    <td><input type="password" id="pass" name="pass" placeholder="Введите пароль" required></td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Пол</td>
+                    <td>
+                        <input type="radio" id="male" name="gender" value="m" checked>
+                        <label for="male">Мужчина</label>
+                        <input type="radio" id="female" name="gender" value="f">
+                        <label for="female">Женщина</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-cell"><label for="year">Год рождения</label></td>
+                    <td>
+                        <select id="year" name="year">
+                            <option value="1981">1981</option>
+                            <option value="1982">1982</option>
+                            <option value="1983">1983</option>
+                        </select> -й
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-cell">Я знаю</td>
+                    <td class="checkbox-group">
+                        <label><input type="checkbox" name="lang[]" value="ru" checked disabled> Русский</label>
+                        <label><input type="checkbox" name="lang[]" id="es" value="es"> Испанский</label>
+                        <label><input type="checkbox" name="lang[]" id="de" value="de"> Немецкий</label>
+                        <label><input type="checkbox" name="lang[]" id="en" value="en"> Английский</label>
+                        <label><input type="checkbox" name="lang[]" id="zh" value="zh"> Китайский</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-cell"><label for="about">Обо мне</label></td>
+                    <td>
+                        <textarea id="about" name="about" placeholder="Напишите коротко о себе"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="buttons">
+                        <input type="submit" value="Готово">
+                        <input type="reset" value="Очистить">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

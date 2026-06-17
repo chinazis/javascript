@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Сообщения</title>
+    <style>
+        body {
+            margin: 10px auto;
+            width: 470px;
+        }
+
+        h3 {
+            margin: 0;
+            padding-bottom: .3em;
+            padding-right: 20px;
+            font-size: 1.1em;
+        }
+
+        p {
+            margin: 0;
+            padding: 0 0 .5em;
+        }
+
+        .pane {
+            background: #edf5e1;
+            padding: 10px 20px 10px;
+            border-top: solid 2px #c4df9b;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        /* Класс для скрытия элементов */
+        .pane.hidden {
+            display: none;
+        }
+
+        .remove-button {
+            position: absolute;
+            font-size: 110%;
+            top: 0;
+            color: darkred;
+            right: 10px;
+            display: block;
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        /* Стиль для кнопки восстановления */
+        .restore-button {
+            display: block;
+            margin: 0 auto 15px;
+            padding: 8px 16px;
+            background-color: #c4df9b;
+            border: 1px solid #a3c477;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.95em;
+        }
+
+        .restore-button:hover {
+            background-color: #b3d488;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="restore-all-btn" class="restore-button">Показать все скрытые сообщения</button>
+
+    <div id="messages-container">
+        <div class="pane">
+            <h3>Лошадь</h3>
+            <p>Домашняя лошадь — животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид
+                дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</p>
+            <button class="remove-button">[x]</button>
+        </div>
+        <div class="pane">
+            <h3>Осёл</h3>
+            <p>Домашний осёл или ишак — одомашненный подвид дикого осла, сыгравший важную историческую роль в развитии
+                хозяйства и культуры человека. Все одомашненные ослы относятся к африканским ослам.</p>
+            <button class="remove-button">[x]</button>
+        </div>
+        <div class="pane">
+            <h3>Корова, а также пара слов о диком быке, о волах и о тёлках. </h3>
+            <p>Коро́ва — самка домашнего быка, одомашненного подвида дикого быка, парнокопытного жвачного животного
+                семейства полорогих. Самцы вида называются быками, молодняк — телятами, кастрированные самцы — волами.
+                Молодых (до первой стельности) самок называют
+                тёлками.
+            </p>
+            <button class="remove-button">[x]</button>
+        </div>
+    </div>
+
+    <script>
+    'use strict';
+
+    /**
+     * Класс для управления списком уведомлений или сообщений на странице.
+     * Позволяет скрывать отдельные карточки и восстанавливать их отображение.
+     */
+    class MessageManager {
+        /**
+         * Создает экземпляр менеджера сообщений.
+         * 
+         * @param {string} containerId - Идентификатор главного контейнера сообщений.
+         * @param {string} restoreBtnId - Идентификатор кнопки восстановления сообщений.
+         */
+        constructor(containerId, restoreBtnId) {
+            /** 
+             * Главный контейнер, содержащий все плашки сообщений.
+             * @type {HTMLElement|null} 
+             * @private
+             */
+            this._container = document.getElementById(containerId);
+
+            /** 
+             * Кнопка для восстановления всех скрытых сообщений.
+             * @type {HTMLElement|null} 
+             * @private
+             */
+            this._restoreBtn = document.getElementById(restoreBtnId);
+
+            if (!this._container) {
+                throw new Error(`Элемент с id "${containerId}" не найден.`);
+            }
+            if (!this._restoreBtn) {
+                throw new Error(`Элемент с id "${restoreBtnId}" не найден.`);
+            }
+
+            this._init();
+        }
+
+        /**
+         * Инициализирует обработчики событий для скрытия и восстановления элементов.
+         * 
+         * @returns {void}
+         * @private
+         */
+        _init() {
+
+            this._container.addEventListener('click', (event) => {
+                /** @type {HTMLElement} */
+                const target = event.target;
+
+                if (target.classList.contains('remove-button')) {
+                    this.hideMessage(target);
+                }
+            });
+
+            this._restoreBtn.addEventListener('click', () => {
+                this.restoreAllMessages();
+            });
+        }
+
+        /**
+         * Скрывает плашку сообщения, добавляя ей CSS-класс 'hidden'.
+         * 
+         * @param {HTMLElement} button - Элемент кнопки, инициировавший скрытие.
+         * @returns {void}
+         */
+        hideMessage(button) {
+            /** @type {HTMLElement|null} */
+            const pane = button.closest('.pane');
+            
+            if (pane) {
+                pane.classList.add('hidden');
+            }
+        }
+
+        /**
+         * Восстанавливает отображение всех скрытых плашек сообщений в контейнере.
+         * 
+         * @returns {void}
+         */
+        restoreAllMessages() {
+            /** @type {NodeListOf<HTMLElement>} */
+            const hiddenPanes = this._container.querySelectorAll('.pane.hidden');
+            
+            hiddenPanes.forEach((pane) => {
+                pane.classList.remove('hidden');
+            });
+        }
+    }
+
+    const manager = new MessageManager('messages-container', 'restore-all-btn');
+</script>
+
+</body>
+
+</html>

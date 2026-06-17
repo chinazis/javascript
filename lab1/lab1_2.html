@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Считать ворон</title>
+</head>
+<body>
+    <input type="number" id="num" placeholder="Введите число ворон">
+    <button onclick="countCrows()">Считать</button>
+
+    <script>
+        function countCrows() {
+            let n = Math.abs(parseInt(document.getElementById('num').value));
+            let word = "";
+
+            let k1 = n % 10;
+            let k2 = n % 100;
+
+            if (k2 >= 11 && k2 <= 14) {
+                word = "ворон";
+            } else {
+                switch (k1) {
+                    case 1: word = "ворона"; break;
+                    case 2:
+                    case 3:
+                    case 4: word = "вороны"; break;
+                    default: word = "ворон"; break;
+                }
+            }
+            alert(`На ветке сидит ${n} ${word}`);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Организация фреймовой структуры</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            overflow: hidden;
+        }
+        iframe{
+            border: none;
+            height: 100vh;
+        }
+        .menu-frame{
+            width: 200px;
+            border-right: 1px solid;
+        }
+        .content-frame{
+            width: 800px;
+        }   
+    </style>
+</head>
+
+<body>
+<iframe src="/lab2/iframes/menu.html" name="menu" class="menu-frame"></iframe>
+
+<iframe src="about:blank" name="content" class="content-frame"></iframe>
+</body>
+
+</html>

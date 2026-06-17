@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню с Font Awesome</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        html {
+            background: #f0f0f0;
+        }
+        
+        .menu {
+            width: 200px;
+            background: #fff;
+            font-family: Arial, sans-serif;
+            padding: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .menu > ul > li {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .menu li a {
+            display: block;
+            padding: 8px 10px 8px 25px;
+            color: #333;
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .menu li a:hover {
+            background-color: #f5f5f5;
+        }
+        
+
+        .menu > ul > li > a::before {
+            content: "\f0fe"; 
+            font-family: 'FontAwesome';
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+        }
+        
+        .menu li li a::before {
+            content: "\f192"; 
+            font-family: 'FontAwesome';
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+        }
+        
+
+        .menu li > ul {
+            display: none;
+            padding-left: 15px;
+        }
+        
+
+        .menu > ul > li:hover > ul {
+            display: block;
+        }
+        
+
+        .menu > ul > li:hover > a::before {
+            content: "\f146"; 
+        }
+    </style>
+</head>
+<body>
+    <nav class="menu">
+        <ul>
+            <li>
+                <a href="#">Фильмы</a>
+                <ul>
+                    <li><a href="#">Экшн</a></li>
+                    <li><a href="#">Мелодрамы</a></li>
+                    <li><a href="#">Сериалы</a></li>
+                    <li><a href="#">Семейные</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Музыка</a>
+                <ul>
+                    <li><a href="#">Классика</a></li>
+                    <li><a href="#">Джаз</a></li>
+                    <li><a href="#">Рок</a></li>
+                    <li><a href="#">Грандж</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Софт</a>
+                <ul>
+                    <li><a href="#">Графика</a></li>
+                    <li><a href="#">3D-моделирование</a></li>
+                    <li><a href="#">Машинопись</a></li>
+                    <li><a href="#">Переводчики</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Игры</a>
+                <ul>
+                    <li><a href="#">РПГ</a></li>
+                    <li><a href="#">Шутеры</a></li>
+                    <li><a href="#">Пасьянсы</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>

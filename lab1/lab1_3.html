@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Ввод числа</title>
+</head>
+<body>
+    <a href="/lab1/index.html" id="number">Получить число</a>
+
+    <script>
+        document.getElementById('number').onclick = function(f) {
+            let input;
+            let success = false;
+
+            while (true) {
+                input = prompt("Введите число больше 100", "");
+                
+                if (input === null) {
+                    success = false;
+                    break;
+                }
+                
+                if (Number(input) > 100) {
+                    success = true;
+                    break;
+                }
+            }
+
+            if (success) {
+
+                return true; 
+            } else {
+
+                if (confirm("Вы не ввели нужное число. Все равно перейти?")) {
+                    f.preventDefault();
+                }
+            }
+        };
+    </script>
+</body>
+</html>
