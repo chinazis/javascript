@@ -1,25 +1,38 @@
 'use strict';
-
+/**
+ *Класс Book, простой класс книги с конструктором и методом show для вывода информации о книге в консоле.
+ */
 class book {
     constructor(title, pubYear, price) {
-        this.title = title;
-        this.pubYear = pubYear;
-        this.price = price;
-    }
+        this.title = title; /*Название книги*/
+        this.pubYear = pubYear; /*Год издания*/
+        this.price = price; /*Цена*/
+    } 
+    /**
+     * Метод show выводит строку с названием и ценой.
+     */
     show() {
         console.log(`Название: ${this.title}, Цена: ${this.price}`);
     }
 }
+/**
+ *Создаём экземпляр и вызываем метод show
+ */
 const myBook = new book('Война и мир', 1869, 500);
 myBook.show();
-
+/**
+ *Класс bookwithgetters расщиренная версия с приватным полем #price и валидацией свойств
+ */
 class bookWithGetters {
-    #price;
+    #price; /* Приватное поле для цены */
     constructor(title, pubYear, price) {
         this.title = title;
         this.pubYear = pubYear;
-        this.#price = price;
+        this.#price = price; /* Сразу присваеваем приватному полю */
     }
+    /**
+     *Геттеры и сеттеры для title.
+     */
     get title() {
         return this._title;
     }
@@ -29,6 +42,9 @@ class bookWithGetters {
         }
         this._title = value;
     }
+    /**
+     * Геттеры и сеттеры для pubyear.
+     */
     get pubYear() {
         return this._pubYear;
     }
@@ -38,6 +54,9 @@ class bookWithGetters {
         }
         this._pubYear = value;
     }
+    /**
+     *Геттеры и сеттеры для price.
+     */
     get price() {
         return this.#price;
     }
@@ -47,39 +66,69 @@ class bookWithGetters {
         }
         this.#price = value;
     }
+    /**
+     *Метод show использует геттеры для получения значений.
+     */
     show() {
         console.log(`Название: ${this.title}, Цена: ${this.price}`);
     }
 }
+/**
+ *Создаём книгу с валидацией
+ */
 const myBook2 = new bookWithGetters('Преступление и наказание', 1866, 450);
 myBook2.show();
-myBook2.title = 'Идиот';
+myBook2.title = 'Идиот'; /* Меняем название через сеттер */
 console.log(myBook2.title);
-
-class bookWithCompare extends bookWithGetters {
+/**
+ *Класс bookWithCompare расширяет bookWithCetters и добавляет статистический метод compare для сортировки по году
+*/
+class bookWithCompare extends bookWithGetters { 
+    /*
+     *Статистический метод сравнения двух книг по году издания.
+     *Возвращает разницу городов.
+     */
     static compare(bookA, bookB) {
         return bookA.pubYear - bookB.pubYear;
     }
 }
+/**
+ *Массив книг для сортировки.
+ */
 const books = [
     new bookWithCompare('Евгений Онегин', 1833, 300),
     new bookWithCompare('Мёртвые души', 1842, 400),
     new bookWithCompare('Герой нашего времени', 1840, 350)
 ];
+/**
+ *Сотритуем массив с помощью статистического мтода compare.
+ */
 books.sort(bookWithCompare.compare);
 console.log('Отсортированные книги по году издания:');
 books.forEach(book => console.log(`${book.title} — ${book.pubYear} год`));
-
+/**
+ *Фуyкция isempty-проверка пустоты объекта.
+ */
 function isEmpty(obj) {
+    /**
+    * Перечисляемые свойства.
+    */
     for (let key in obj) {
         return false;
     }
+    /**
+     * Неперечисляемые строковые свойства.
+     */
     if (Object.getOwnPropertyNames(obj).length > 0) {
         return false;
     }
+    /**
+     * Свойства-символы
+     */
     const symbols = Object.getOwnPropertySymbols(obj);
     return symbols.length === 0;
 }
+/* Тесты функции isempty */
 console.log(isEmpty({}));
 console.log(isEmpty({ [Symbol()]: 'test' }));
 console.log(isEmpty(true));
@@ -101,6 +150,7 @@ function removeClass(obj, cls) {
     obj.className = classes.join(' ').trim();
     return obj;
 }
+/* Демонстрация */
 obj = { className: 'open menu' };
 addClass(obj, 'new');
 console.log(obj.className);
