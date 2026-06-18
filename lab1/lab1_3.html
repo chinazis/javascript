@@ -5,37 +5,51 @@
     <title>Ввод числа</title>
 </head>
 <body>
-    <a href="/lab1/index.html" id="number">Получить число</a>
+    <h1>Ввод числа</h1>
+    <a href="#" id="getNumberLink">Получить число</a>
 
     <script>
-        document.getElementById('number').onclick = function(f) {
-            let input;
-            let success = false;
+        'use strict';
 
+        const link = document.getElementById('getNumberLink');
+        
+        // Абсолютный путь к вашему репозиторию JavaScript на GitHub Pages
+        const targetUrl = 'https://chinazis.github.io/javascript/';
+
+        function askForNumber() {
             while (true) {
-                input = prompt("Введите число больше 100", "");
+                let input = prompt("Введите число, большее 100:");
                 
                 if (input === null) {
-                    success = false;
-                    break;
+                    return false;
                 }
                 
-                if (Number(input) > 100) {
-                    success = true;
-                    break;
+                let num = Number(input);
+                
+                if (!isNaN(num) && num > 100) {
+                    return true;
                 }
             }
+        }
 
+        function redirectToIndex() {
+            window.location.href = targetUrl;
+        }
+
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            
+            const success = askForNumber();
+            
             if (success) {
-
-                return true; 
+                redirectToIndex();
             } else {
-
-                if (confirm("Вы не ввели нужное число. Все равно перейти?")) {
-                    f.preventDefault();
+                const allow = confirm("Вы не ввели число больше 100. Всё равно перейти?");
+                if (allow) {
+                    redirectToIndex();
                 }
             }
-        };
+        });
     </script>
 </body>
 </html>
